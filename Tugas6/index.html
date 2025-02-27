@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Keuangan</title>
+</head>
+<body>
+    <h1>Aplikasi Manajemen Keuangan</h1>
+
+    <label for="pengeluaranBulanan">Pengeluaran Bulanan:</label>
+    <input type="number" id="pengeluaranBulanan" value="0">
+
+    <label for="pengeluaranTahunan">Pengeluaran Tahunan:</label>
+    <input type="number" id="pengeluaranTahunan" value="0">
+
+    <button onclick="hitung()">Hitung</button>
+
+    <div id="hasil"></div>
+
+    <script>
+        function hitung() {
+            let bulanan = parseFloat(document.getElementById("pengeluaranBulanan").value);
+            let tahunan = parseFloat(document.getElementById("pengeluaranTahunan").value);
+
+            let total = bulanan + tahunan;
+
+            let Perbandingan = "";
+            if (bulanan > tahunan) {
+                Perbandingan = "Pengeluaran bulanan lebih besar dari tahunan.";
+            } else if (bulanan < tahunan) {
+                Perbandingan = "Pengeluaran tahunan lebih besar dari bulanan.";
+            } else {
+                Perbandingan = "Pengeluaran bulanan dan tahunan sama.";
+            }
+
+            let rataRataBulanan = total / 12;
+
+            let hasilDiv = document.getElementById("hasil");
+            hasilDiv.innerHTML = `
+                <p>Total Pengeluaran: ${total}</p>
+                <p>${Perbandingan}</p>
+                <p>Rata-rata Pengeluaran Bulanan: ${rataRataBulanan.toFixed(2)}</p>`;
+        }
+    </script>
+</body>
+</html>

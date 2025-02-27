@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Keuangan</title>
+    <script>
+        function hitungTotalPengeluaran(bulanan, tahunan) {
+            return bulanan * 12 + tahunan;
+        }
+
+        function bandingkanPengeluaran(bulanan, tahunan) {
+            if (bulanan * 12 > tahunan) {
+                return "Pengeluaran bulanan lebih besar dari pengeluaran tahunan.";
+            } else if (bulanan * 12 < tahunan) {
+                return "Pengeluaran tahunan lebih besar dari pengeluaran bulanan.";
+            } else {
+                return "Pengeluaran bulanan dan tahunan sama.";
+            }
+        }
+
+        function hitungRataRataPengeluaran(tahunan) {
+            return tahunan / 12;
+        }
+
+        function handleButtonClick() {
+            var pengeluaranBulanan = parseFloat(prompt("Masukkan pengeluaran bulanan:", ""));
+            var pengeluaranTahunan = parseFloat(prompt("Masukkan pengeluaran tahunan:", ""));
+
+            var totalPengeluaran = hitungTotalPengeluaran(pengeluaranBulanan, pengeluaranTahunan);
+            var perbandinganPengeluaran = bandingkanPengeluaran(pengeluaranBulanan, pengeluaranTahunan);
+            var rataRataPengeluaran = hitungRataRataPengeluaran(pengeluaranTahunan);
+
+            document.getElementById('result').innerHTML = `
+                <p>Total Pengeluaran: ${totalPengeluaran}</p>
+                <p>${perbandinganPengeluaran}</p>
+                <p>Rata-rata Pengeluaran Bulanan dari Pengeluaran Tahunan: ${rataRataPengeluaran}</p>
+                <button onClick="handleBackButtonClick()" class="button">Back</button>
+            `;
+        }
+
+        function handleBackButtonClick() {
+            document.getElementById('result').innerHTML = '';
+        }
+    </script>
+</head>
+<body>
+    <button onClick="handleButtonClick()" class="button">Hitung Pengeluaranmu</button>
+    <div id="result" class="result"></div>
+</body>
+</html>
